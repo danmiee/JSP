@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>최대공약수 최소공배수 구하기</title>
 </head>
 <body>
 <%
