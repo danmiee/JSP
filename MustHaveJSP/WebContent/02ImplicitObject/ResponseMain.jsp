@@ -12,6 +12,9 @@
 	<%
 	String loginErr = request.getParameter("loginErr");
 	if (loginErr != null) out.print("로그인 실패");
+	
+	System.out.println("loginErr : " + loginErr);
+	
 	%>
 	<!-- post 방식으로 전송하면 ResponsLogin.jsp에서 응답 -->
 	<form action="./ResponseLogin.jsp" method="post">
