@@ -26,9 +26,9 @@ if (cookies!=null) {
 div#popup {
 	position: absolue;
 	top: 100px;
-	left: 50px;
+	left: 100px;
 	color: yellow;
-	width: 270px;
+	width: 300px;
 	height: 100px;
 	background-color: gray;
 }
@@ -57,21 +57,22 @@ div#popup>div {
 				/* id가 inactiveToday인 체크박스의 체크된 값을 읽어와서(val()) chkVal 변수에 저장 */
 			
 			/* jQuery의 ajax()함수 : 비동기요청 */
-			$.ajax({											/* 비동기로 요청 보냄 */
-				url : './PopupCookies.jsp',						/* PopupCookies.jsp 파일에 */
-				type : 'get',									/* http get 방식으로 */
-				data : {inactiveToday : chkVal},				/* 하루동안 열지않음 체크된 데이터 */
-				dataType : "text",								/* 응답 데이터타입 : 일반 텍스트 */
-				success : function(resData) {					/* 응답 데이터가 있으면 */
-					if (resData != '') location.reload();		/* 페이지 새로고침 */
+			$.ajax({										/* 비동기로 요청 보냄 */
+				url : './PopupCookie.jsp',					/* PopupCookies.jsp 파일에 */
+				type : 'get',								/* http get 방식으로 */
+				data : {inactiveToday : chkVal},			/* 하루동안 열지않음 체크된 데이터 */
+				dataType : "text",							/* 응답 데이터타입 : 일반 텍스트 */
+				success : function(resData) {				/* 응답 데이터가 있으면 */
+					if (resData != '')
+						location.reload();	/* 페이지 새로고침 */
 				}
 			});
 		});
-	})
+	});
 </script>
 </head>
 <body>
-	<h2>팝업 메인 페이지(ver 0.1)</h2>
+	<h2>팝업 메인 페이지</h2>
 	<%
 		for(int i=1; i<=10; i++) {
 			out.print("현재 팝업창은 " + popupMode + "상태입니다.<br/>");
