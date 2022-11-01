@@ -6,6 +6,7 @@
 	<jsp:include page="../Common/Link.jsp" />
     <h2>로그인 페이지</h2>
     <span style="color: red; font-size: 1.2em;"> 
+    <!-- 처음 접속 시 setAttribute값이 없으므로 null / NPE 방지를 위해 조건문 활용 -->
         <%= request.getAttribute("LoginErrMsg") == null ?
                 "" : request.getAttribute("LoginErrMsg") %>
     </span>

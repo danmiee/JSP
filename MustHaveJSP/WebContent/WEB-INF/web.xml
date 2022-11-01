@@ -20,7 +20,7 @@
   	<param-value>web.xml에 저장한 초기화 매개변수</param-value>
   </context-param>
 
-<!-- 오라클 데이터베이스 접속 정보(예제 5-8) -->
+<!-- MySQL 데이터베이스 접속 정보(예제 5-8) -->
   <context-param>
     <param-name>MySQLDriver</param-name>
     <param-value>com.mysql.cj.jdbc.Driver</param-value>
