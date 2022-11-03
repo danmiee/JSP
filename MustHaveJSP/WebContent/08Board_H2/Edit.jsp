@@ -18,10 +18,9 @@ dao.close();  // DB 연결 해제
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="../Common/Link.jsp" />
 <title>회원제 게시판</title>
 <script type="text/javascript">
-function validateForm(form) {  // 폼 내용 검증
+function validateForm(form) {  // 폼 내용 검증 
     if (form.title.value == "") {
         alert("제목을 입력하세요.");
         form.title.focus();
@@ -36,6 +35,7 @@ function validateForm(form) {  // 폼 내용 검증
 </script>
 </head>
 <body>
+<jsp:include page="../Common/Link_H2.jsp" />
 <h2>회원제 게시판 - 수정하기(Edit)</h2>
 <form name="writeFrm" method="post" action="EditProcess.jsp"
       onsubmit="return validateForm(this);">

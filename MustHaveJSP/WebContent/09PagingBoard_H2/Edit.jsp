@@ -18,7 +18,7 @@ dao.close();  // DB 연결 해제
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="../Common/Link.jsp" />
+<jsp:include page="../Common/Link_H2.jsp" />
 <title>회원제 게시판</title>
 <script type="text/javascript">
 function validateForm(form) {  // 폼 내용 검증

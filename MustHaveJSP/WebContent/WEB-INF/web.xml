@@ -37,7 +37,25 @@
     <param-name>MySQLPwd</param-name>
     <param-value>tiger</param-value>
   </context-param>
-    
+
+<!-- H2 데이터베이스 접속 정보(예제 5-8) -->
+  <context-param>
+    <param-name>H2Driver</param-name>
+    <param-value>org.h2.Driver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>H2URL</param-name>
+    <param-value>jdbc:h2:tcp://localhost/~/test;mv_store=false</param-value>
+  </context-param>
+  <context-param>
+    <param-name>H2Id</param-name>
+    <param-value>sa</param-value>
+  </context-param>
+  <context-param>
+    <param-name>H2Pwd</param-name>
+    <param-value></param-value>
+  </context-param>
+  
 <!-- 게시판 페이징 처리를 위한 설정값(예제 9-3) -->
   <context-param>
     <param-name>POSTS_PER_PAGE</param-name>
