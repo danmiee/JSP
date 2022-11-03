@@ -27,6 +27,8 @@ dao.close();  // DB 연결 닫기
 <head>
 <meta charset="UTF-8">
 <title>회원제 게시판</title>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
     <jsp:include page="../Common/Link.jsp" />  <!-- 공통 링크 -->
@@ -48,7 +50,7 @@ dao.close();  // DB 연결 닫기
     </table>
     </form>
     <!-- 게시물 목록 테이블(표) --> 
-    <table border="1" width="90%">
+    <table class="table table-striped" border="1" style="width:90%">
         <!-- 각 칼럼의 이름 --> 
         <tr>
             <th width="10%">번호</th>
