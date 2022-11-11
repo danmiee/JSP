@@ -21,7 +21,7 @@ public class JDBConnect_H2 {
             Class.forName("org.h2.Driver");
 
             // DB에 연결
-            String url = "jdbc:h2:tcp://localhost/~/test;mv_store=false";
+            String url = "jdbc:h2:tcp://localhost/~/test";
             String id = "sa";
             String pwd = ""; 
             con = DriverManager.getConnection(url, id, pwd); 

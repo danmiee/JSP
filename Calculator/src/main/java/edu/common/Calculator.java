@@ -21,7 +21,6 @@ public class Calculator extends HttpServlet {
 	static int calc(String input) { 
 		int idx; 		
 		idx = input.indexOf('+'); //TODO [+] 문자의 인덱스 위치 확인
-
 		if (idx != -1) { //TODO [+] 문자가 있으니까 -1이 아니여야 함 (indexOf는 찾을려는 문자가 없으면 -1 반환)			
 			return calc(input.substring(0, idx)) + calc(input.substring(idx + 1)); 
 		} else { //TODO [+] 문자가 없을 경우는 [-], [*], [/] 연산자 포함 여부를 확인합니다
@@ -40,7 +39,7 @@ public class Calculator extends HttpServlet {
 			}
 		}
 		
-		String data = input.trim();
+		String data = input.trim();  // trim : 공백제거
 		if (data == null || data.isEmpty()) return 0;
 		return Integer.parseInt(data); 
 	}

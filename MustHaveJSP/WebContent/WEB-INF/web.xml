@@ -45,7 +45,7 @@
   </context-param>
   <context-param>
     <param-name>H2URL</param-name>
-    <param-value>jdbc:h2:tcp://localhost/~/test;mv_store=false</param-value>
+    <param-value>jdbc:h2:tcp://localhost/~/test</param-value>
   </context-param>
   <context-param>
     <param-name>H2Id</param-name>
@@ -65,5 +65,28 @@
     <param-name>PAGES_PER_BLOCK</param-name>
     <param-value>5</param-value>
   </context-param>
+  
+<!-- 서블릿 매핑 1(예제 13-2) -->
+<!-- 	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/13Servlet/HelloServlet.do</url-pattern>	
+	</servlet-mapping> -->
 
+  <servlet>
+    <servlet-name>MemberAuth</servlet-name>
+    <servlet-class>servlet.MemberAuth</servlet-class>
+    <init-param>
+      <param-name>admin_id</param-name>
+      <param-value>admin</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberAuth</servlet-name>
+    <url-pattern>/13Servlet/MemberAuth.mvc</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
