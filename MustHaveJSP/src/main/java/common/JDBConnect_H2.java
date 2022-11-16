@@ -21,7 +21,8 @@ public class JDBConnect_H2 {
             Class.forName("org.h2.Driver");
 
             // DB에 연결
-            String url = "jdbc:h2:tcp://localhost/~/test";
+            	// 기존 사용했던 db와 다른 db를 사용했으므로 url 변경
+            String url = "jdbc:h2:tcp://localhost/~/mvcboard";
             String id = "sa";
             String pwd = ""; 
             con = DriverManager.getConnection(url, id, pwd); 
@@ -32,7 +33,6 @@ public class JDBConnect_H2 {
             e.printStackTrace();
         }
     }
-
 	
 	  // 두 번째 생성자
     public JDBConnect_H2(String driver, String url, String id, String pwd) {
