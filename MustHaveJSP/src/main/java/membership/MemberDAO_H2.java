@@ -1,14 +1,27 @@
 package membership;
 
+import javax.servlet.ServletContext;
+
 import common.JDBConnect_H2;
 
 public class MemberDAO_H2 extends JDBConnect_H2 {
     // 명시한 데이터베이스로의 연결이 완료된 MemberDAO 객체를 생성합니다.
-    public MemberDAO_H2(String drv, String url, String id, String pw) {
+	public MemberDAO_H2() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public MemberDAO_H2(String drv, String url, String id, String pw) {
         super(drv, url, id, pw);
     }
 
-    // 명시한 아이디/패스워드와 일치하는 회원 정보를 반환합니다.
+
+	public MemberDAO_H2(ServletContext application) {
+		super(application);
+		// TODO Auto-generated constructor stub
+	}
+
+	// 명시한 아이디/패스워드와 일치하는 회원 정보를 반환합니다.
     public MemberDTO getMemberDTO(String uid, String upass) {
         MemberDTO dto = new MemberDTO();  // 회원 정보 DTO 객체 생성
         String query = "SELECT * FROM member WHERE id=? AND pass=?";  // 쿼리문 템플릿
