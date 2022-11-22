@@ -12,7 +12,7 @@ public class sqlconnection {
 	private ResultSet rs;
 	private CallableStatement cs;
 
-	Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 
 // 클래스 list를 선언한다. java.sql의 Connection 객체 con을 선언한다.  	
 	public sqlconnection() {
@@ -144,34 +144,33 @@ public class sqlconnection {
 	}
 
 	public static void main(String args[]) {
-		sqlconnection sc = new sqlconnection();
-		Scanner scan = new Scanner(System.in);
+		sqlconnection sqlc = new sqlconnection();
 		int choice;
 		while (true) {
 			System.out.println("Press (1)Insert (2)Update (3)Delete (4)SelectAll (5)Select (6)Quit");
-			choice = scan.nextInt();
+			choice = sc.nextInt();
 
 			if (choice == 6)
 				break;
 
 			switch (choice) {
 			case 1:
-				sc.insert();
+				sqlc.insert();
 				break;
 
 			case 2:
-				sc.update();
+				sqlc.update();
 				break;
 
 			case 3:
-				sc.delete();
+				sqlc.delete();
 				break;
 
 			case 4:
-				sc.selectAll();
+				sqlc.selectAll();
 				break;
 			case 5:
-				sc.select();
+				sqlc.select();
 				break;
 			case 6:
 				System.out.println("프로그램 종료");
@@ -181,6 +180,6 @@ public class sqlconnection {
 				break;
 			}
 		}
-		scan.close();
+		sc.close();
 	}
 }
