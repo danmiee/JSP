@@ -4,9 +4,16 @@ import java.sql.*;
 import java.util.Scanner;
 
 // SQL 관련 클래스는 java.sql .*에 포함되어 있다.
+@SuppressWarnings("unused")
 public class sqlconnection {
-	Connection con;
-	Scanner scan;
+	private Connection con;
+	private PreparedStatement ps;
+	private Statement sm;
+	private ResultSet rs;
+	private CallableStatement cs;
+
+	Scanner sc = new Scanner(System.in);
+
 // 클래스 list를 선언한다. java.sql의 Connection 객체 con을 선언한다.  	
 	public sqlconnection() {
 		String driver = "com.mysql.cj.jdbc.Driver";
@@ -31,73 +38,69 @@ public class sqlconnection {
 		}
 	}
 
-	public void insertQuery() {
-		scan = new Scanner(System.in);
+	public void insert() {
 		System.out.println("추가할 학과번호, 학과명, 전화번호를 입력하세요.");
-		String num = scan.next();
-		String name = scan.next();
-		String tel = scan.next();
-		department newone = new department(num, name, tel);
-		
-//		String query = "INSERT INTO 학과sqlconTest(학과번호, 학과명, 전화번호) VALUES (?,?,?)"; /* SQL 문 */
+		String num = sc.next();
+		String name = sc.next();
+		String tel = sc.next();
+
+//		String sql = "INSERT INTO 학과sqlconTest(학과번호, 학과명, 전화번호) VALUES (?,?,?)"; /* SQL 문 */
 		try {
-//			PreparedStatement ps = con.prepareCall(query);
-//			ps.setInt(1, newone.getNum());
-//			ps.setString(2, newone.getName());
-//			ps.setString(3, newone.getTel());
+//			PreparedStatement ps = con.prepareCall(sql);
+//			ps.setInt(1, num);
+//			ps.setString(2, name);
+//			ps.setString(3, tel);
 //			ps.executeUpdate();
 			CallableStatement cs = con.prepareCall("{call 학과insert(?,?,?)}");
-			cs.setString(1, newone.getNum());
-			cs.setString(2, newone.getName());
-			cs.setString(3, newone.getTel());
+			cs.setString(1, num);
+			cs.setString(2, name);
+			cs.setString(3, tel);
 			cs.execute();
-			System.out.println("insert: " + newone);
+			System.out.println("insert");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void updateQuery() {
-		scan = new Scanner(System.in);
+	public void update() {
 		System.out.println("수정할 학과번호, 학과명, 전화번호를 입력하세요.");
-		String num = scan.next();
-		String name = scan.next();
-		String tel = scan.next();
-		department newone = new department(num, name, tel);
+		String num = sc.next();
+		String name = sc.next();
+		String tel = sc.next();
 
-//		String query = "UPDATE 학과sqlconTest set 학과명=?, 전화번호=? WHERE 학과번호=?";
+//		String sql = "UPDATE 학과sqlconTest set 학과명=?, 전화번호=? WHERE 학과번호=?";
 		try {
-//			PreparedStatement ps = con.prepareStatement(query);
-//			ps.setString(1, newone.getName());
-//			ps.setString(2, newone.getTel());
-//			ps.setString(3, newone.getNum());
+//			PreparedStatement ps = con.prepareStatement(sql);
+//			ps.setString(1, num);
+//			ps.setString(2, name);
+//			ps.setString(3, tel);
 //			ps.executeUpdate();
 			CallableStatement cs = con.prepareCall("{call 학과update(?,?,?)}");
-			cs.setString(1, newone.getNum());
-			cs.setString(2, newone.getName());
-			cs.setString(3, newone.getTel());
+			cs.setString(1, num);
+			cs.setString(2, name);
+			cs.setString(3, tel);
 			cs.execute();
-			System.out.println("Update: " + newone);
+			System.out.println("Update");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	public void deleteQuery() {
-		scan = new Scanner(System.in);
+	public void delete() {
 		System.out.println("삭제할 학과번호를 입력하세요.");
-		String num = scan.next();
-//		String query = "DELETE FROM 학과sqlconTest where 학과번호=?"; /* SQL 문 */
+		String num = sc.next();
+
+//		String sql = "DELETE FROM 학과sqlconTest where 학과번호=?"; /* SQL 문 */
 		try {
-//			PreparedStatement ps = con.prepareCall(query);
+//			PreparedStatement ps = con.prepareCall(sql);
 //			ps.setInt(1, num);
 //			ps.executeUpdate();
-			CallableStatement cs = con.prepareCall("{call 학과delete(?)}");
+			cs = con.prepareCall("{call 학과delete(?)}");
 			cs.setString(1, num);
 			cs.execute();
-			System.out.println("delete: " + num);
+			System.out.println("delete");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -105,14 +108,16 @@ public class sqlconnection {
 
 	// 접속 객체 con을 DriverManager.getConnection 함수로 생성한다.
 	// 접속이 성공하면 "데이터베이스 연결 성공"을 출력하도록 한다.
-	// 문자열 query에 수행할 SQL 문을 입력한다.
-	private void selectQuery() {
-		String query = "SELECT * FROM 학과sqlconTest"; /* SQL 문 */
+	// 문자열 에 수행할 SQL 문을 입력한다.
+	private void selectAll() {
+//		String sql = "SELECT * FROM 학과sqlconTest"; /* SQL 문 */
 		try { /* 데이터베이스에 질의 결과를 가져오는 과정 */
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+//			sm = con.createStatement();
+//			rs = sm.executeQuery(sql);
+			cs = con.prepareCall("{call 학과selectAll()}");
+			rs = cs.executeQuery();
 			while (rs.next()) {
-				System.out.print("\t" + rs.getInt(1));
+				System.out.print("\t" + rs.getString(1));
 				System.out.print("\t" + rs.getString(2));
 				System.out.println("\t" + rs.getString(3));
 			}
@@ -120,35 +125,55 @@ public class sqlconnection {
 			e.printStackTrace();
 		}
 	}
-	
+
+	private void select() {
+		System.out.println("조회할 학과번호를 입력하세요");
+		String num = sc.next();
+		try {
+			cs = con.prepareCall("{call 학과select(?)}");
+			cs.setString(1, num);
+			rs = cs.executeQuery();
+			while (rs.next()) {
+				System.out.print("\t" + rs.getString(1));
+				System.out.print("\t" + rs.getString(2));
+				System.out.println("\t" + rs.getString(3));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void main(String args[]) {
 		sqlconnection sc = new sqlconnection();
 		Scanner scan = new Scanner(System.in);
 		int choice;
 		while (true) {
-			System.out.println("Press (1)Insert (2)Update (3)Delete (4)Select (5)Quit");
+			System.out.println("Press (1)Insert (2)Update (3)Delete (4)SelectAll (5)Select (6)Quit");
 			choice = scan.nextInt();
 
-			if (choice == 5)
+			if (choice == 6)
 				break;
 
 			switch (choice) {
 			case 1:
-				sc.insertQuery();
+				sc.insert();
 				break;
 
 			case 2:
-				sc.updateQuery();
+				sc.update();
 				break;
 
 			case 3:
-				sc.deleteQuery();
+				sc.delete();
 				break;
 
 			case 4:
-				sc.selectQuery();
+				sc.selectAll();
 				break;
 			case 5:
+				sc.select();
+				break;
+			case 6:
 				System.out.println("프로그램 종료");
 				break;
 			default:
