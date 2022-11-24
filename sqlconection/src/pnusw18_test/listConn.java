@@ -71,7 +71,7 @@ public class listConn {
 		}
 	}
 	public void ListDelete() {
-		System.out.println("수정할 정보를 입력하세요");
+		System.out.println("삭제할 정보를 입력하세요");
 		System.out.print("학생번호: ");	int num = sc.nextInt();
 		System.out.print("강좌명: ");		String name = sc.next();
 		
@@ -105,33 +105,26 @@ public class listConn {
 			System.out.println("Press (1)Insert (2)Update (3)Delete (4)SelectAll (5)Quit");
 			choice = sc.nextInt();
 
-			if (choice == 5)
-				break;
-
 			switch (choice) {
 			case 1:
 				lic.ListInsert();
 				break;
-
 			case 2:
 				lic.ListUpdate();
 				break;
-
 			case 3:
 				lic.ListDelete();
 				break;
-
 			case 4:
 				lic.ListSelectAll();
 				break;
 			case 5:
-				System.out.println("프로그램 종료");
+				mainConn.main(args);
 				break;
 			default:
 				System.out.println("잘못된 선택입니다.");
 				break;
 			}
 		}
-		sc.close();
 	}
 }
