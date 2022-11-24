@@ -42,7 +42,7 @@ public class lectureConn {
 		System.out.print("강의실: ");		String room = sc.next();
 
 		try {
-			CallableStatement cs = con.prepareCall("{call LecInsert(?,?)}");
+			cs = con.prepareCall("{call LecInsert(?,?)}");
 			cs.setString(1, name);
 			cs.setString(2, room);
 			cs.execute();
@@ -58,7 +58,7 @@ public class lectureConn {
 		System.out.print("강의실: ");		String room = sc.next();
 
 		try {
-			CallableStatement cs = con.prepareCall("{call LecUpdate(?,?)}");
+			cs = con.prepareCall("{call LecUpdate(?,?)}");
 			cs.setString(1, name);
 			cs.setString(2, room);
 			cs.execute();
@@ -73,7 +73,7 @@ public class lectureConn {
 		System.out.print("강좌명: ");		String name = sc.next();
 
 		try {
-			CallableStatement cs = con.prepareCall("{call LecDelete(?)}");
+			cs = con.prepareCall("{call LecDelete(?)}");
 			cs.setString(1, name);
 			cs.execute();
 			System.out.println("Delete Success");
@@ -103,9 +103,6 @@ public class lectureConn {
 			System.out.println("Press (1)Insert (2)Update (3)Delete (4)SelectAll (5)Quit");
 			choice = sc.nextInt();
 
-			if (choice == 5)
-				break;
-
 			switch (choice) {
 			case 1:
 				lec.LecInsert();
@@ -123,13 +120,12 @@ public class lectureConn {
 				lec.LecSelectAll();
 				break;
 			case 5:
-				System.out.println("프로그램 종료");
+				mainConn.main(args);
 				break;
 			default:
 				System.out.println("잘못된 선택입니다.");
 				break;
 			}
 		}
-		sc.close();
 	}
 }
