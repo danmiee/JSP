@@ -109,9 +109,6 @@ public class studentConn {
 			System.out.println("Press (1)Insert (2)Update (3)Delete (4)SelectAll (5)Quit");
 			choice = sc.nextInt();
 
-			if (choice == 5)
-				break;
-
 			switch (choice) {
 			case 1:
 				std.StdInsert();
@@ -129,13 +126,12 @@ public class studentConn {
 				std.StdSelectAll();
 				break;
 			case 5:
-				System.out.println("프로그램 종료");
+				mainConn.main(args);
 				break;
 			default:
 				System.out.println("잘못된 선택입니다.");
 				break;
 			}
 		}
-		sc.close();
 	}
 }
