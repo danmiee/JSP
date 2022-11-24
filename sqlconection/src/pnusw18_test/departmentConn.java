@@ -36,7 +36,7 @@ public class departmentConn {
 		}
 	}
 
-	public void DpmInsert() {
+	public void DepInsert() {
 		System.out.println("추가할 학과의 정보를 입력하세요.");
 		System.out.print("학과명: ");
 		String name = sc.next();
@@ -44,7 +44,7 @@ public class departmentConn {
 		String room = sc.next();
 
 		try {
-			cs = con.prepareCall("{call DpmInsert(?,?)}");
+			cs = con.prepareCall("{call DepInsert(?,?)}");
 			cs.setString(1, name);
 			cs.setString(2, room);
 			cs.execute();
@@ -54,7 +54,7 @@ public class departmentConn {
 		}
 	}
 
-	public void DpmUpdate() {
+	public void DepUpdate() {
 		System.out.println("수정할 학과의 정보를 입력하세요.");
 		System.out.print("학과명: ");
 		String name = sc.next();
@@ -62,7 +62,7 @@ public class departmentConn {
 		String room = sc.next();
 
 		try {
-			cs = con.prepareCall("{call DpmUpdate(?,?)}");
+			cs = con.prepareCall("{call DepUpdate(?,?)}");
 			cs.setString(1, room);
 			cs.setString(2, name);
 			cs.execute();
@@ -72,12 +72,12 @@ public class departmentConn {
 		}
 	}
 
-	public void DpmDelete() {
+	public void DepDelete() {
 		System.out.println("삭제할 학과명을 입력하세요.");
 		String name = sc.next();
 
 		try {
-			cs = con.prepareCall("{call DpmDelete(?)}");
+			cs = con.prepareCall("{call DepDelete(?)}");
 			cs.setString(1, name);
 			cs.execute();
 			System.out.println("Delete Success");
@@ -86,10 +86,10 @@ public class departmentConn {
 		}
 	}
 
-	public void DpmSelectAll() {
+	public void DepSelectAll() {
 		System.out.println("전체 학과 조회");
 		try {
-			cs = con.prepareCall("{call DpmSelectAll()}");
+			cs = con.prepareCall("{call DepSelectAll()}");
 			rs = cs.executeQuery();
 			while (rs.next()) {
 				System.out.printf("%s(%s)\n", rs.getString(1), rs.getString(2));
@@ -107,33 +107,26 @@ public class departmentConn {
 			System.out.println("Press (1)Insert (2)Update (3)Delete (4)SelectAll (5)Quit");
 			choice = sc.nextInt();
 
-			if (choice == 5)
-				break;
-
 			switch (choice) {
 			case 1:
-				dc.DpmInsert();
+				dc.DepInsert();
 				break;
-
 			case 2:
-				dc.DpmUpdate();
+				dc.DepUpdate();
 				break;
-
 			case 3:
-				dc.DpmDelete();
+				dc.DepDelete();
 				break;
-
 			case 4:
-				dc.DpmSelectAll();
+				dc.DepSelectAll();
 				break;
 			case 5:
-				System.out.println("프로그램 종료");
+				mainConn.main(args);
 				break;
 			default:
 				System.out.println("잘못된 선택입니다.");
 				break;
 			}
 		}
-		sc.close();
 	}
 }
